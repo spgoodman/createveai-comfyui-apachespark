@@ -18,8 +18,8 @@ The easiest way to get started is using Docker Compose:
 
 ```bash
 # Clone the repository
-git clone https://github.com/createveai/createveai-apachespark.git
-cd createveai-apachespark
+git clone https://github.com/spgoodman/createveai-comfyui-apachespark.git
+cd createveai-comfyui-apachespark
 
 # Start the environment
 docker-compose up -d
@@ -35,12 +35,12 @@ docker-compose up -d
 1. Clone this repository into your ComfyUI custom nodes directory:
 ```bash
 cd /path/to/ComfyUI/custom_nodes
-git clone https://github.com/createveai/createveai-apachespark.git
+git clone https://github.com/spgoodman/createveai-comfyui-apachespark.git
 ```
 
 2. Install dependencies:
 ```bash
-cd createveai-apachespark
+cd createveai-comfyui-apachespark
 pip install -r requirements.txt
 
 # Install optional model files
@@ -172,4 +172,4 @@ MIT License. See [LICENSE](LICENSE) file for details.
 
 - [ComfyUI Repository](https://github.com/comfyanonymous/ComfyUI)
 - [Apache Spark](https://spark.apache.org/)
-- [Project Issues](https://github.com/createveai/createveai-apachespark/issues)
+- [Project Issues](https://github.com/spgoodman/createveai-comfyui-apachespark/issues)

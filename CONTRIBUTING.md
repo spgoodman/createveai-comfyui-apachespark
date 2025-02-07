@@ -22,8 +22,8 @@ This project follows a Code of Conduct that all contributors are expected to adh
 1. Fork the repository
 2. Clone your fork:
    ```bash
-   git clone https://github.com/your-username/createveai-apachespark.git
-   cd createveai-apachespark
+   git clone https://github.com/your-username/createveai-comfyui-apachespark.git
+   cd createveai-comfyui-apachespark
    ```
 
 3. Set up development environment:

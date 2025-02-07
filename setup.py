@@ -9,14 +9,14 @@ with open('README.md', 'r', encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='createveai-apachespark',
+    name='createveai-comfyui-apachespark',
     version='0.1.0',
     description='Apache Spark nodes for ComfyUI with advanced data processing and feature extraction capabilities',
     long_description=long_description,
     long_description_content_type='text/markdown',
     author='CreateveAI',
     author_email='support@createve.ai',
-    url='https://github.com/createveai/createveai-apachespark',
+    url='https://github.com/spgoodman/createveai-comfyui-apachespark',
     packages=find_packages(where='src'),
     package_dir={'': 'src'},
     include_package_data=True,
@@ -50,13 +50,13 @@ setup(
     python_requires='>=3.10',
     entry_points={
         'console_scripts': [
-            'createveai-apachespark=createveai_apachespark.cli:main',
+            'createveai-comfyui-apachespark=createveai_apachespark.cli:main',
         ],
     },
     project_urls={
-        'Bug Reports': 'https://github.com/createveai/createveai-apachespark/issues',
-        'Source': 'https://github.com/createveai/createveai-apachespark',
-        'Documentation': 'https://createveai-apachespark.readthedocs.io/',
+        'Bug Reports': 'https://github.com/spgoodman/createveai-comfyui-apachespark/issues',
+        'Source': 'https://github.com/spgoodman/createveai-comfyui-apachespark',
+        'Documentation': 'https://createveai-comfyui-apachespark.readthedocs.io/',
     },
     keywords=[
         'comfyui',

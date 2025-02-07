@@ -62,7 +62,7 @@ services:
       - "8181:8181"  # ComfyUI web interface
     volumes:
       - comfyui_data:/comfyui/output
-      - ./:/comfyui/custom_nodes/createveai-apachespark
+      - ./:/comfyui/custom_nodes/createveai-comfyui-apachespark
       - ./examples/workflows:/comfyui/workflows
     environment:
       - SPARK_MASTER=spark://spark:7077

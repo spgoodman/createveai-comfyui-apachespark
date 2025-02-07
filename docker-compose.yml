@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  spark:
+    build:
+      context: .
+      dockerfile: docker/spark/Dockerfile
+    container_name: createveai-spark
+    environment:
+      - SPARK_MODE=master
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+    ports:
+      - "8080:8080"  # Spark Web UI
+      - "7077:7077"  # Spark master port
+    volumes:
+      - spark_data:/opt/spark/data
+      - ./examples/data:/data
+
+  spark-worker:
+    build:
+      context: .
+      dockerfile: docker/spark/Dockerfile
+    depends_on:
+      - spark
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark:7077
+      - SPARK_WORKER_MEMORY=1G
+      - SPARK_WORKER_CORES=1
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+    volumes:
+      - spark_data:/opt/spark/data
+      - ./examples/data:/data
+
+  jupyter:
+    build:
+      context: .
+      dockerfile: docker/jupyter/Dockerfile
+    container_name: createveai-jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./examples/notebooks:/home/jovyan/work
+      - ./examples/data:/data
+    environment:
+      - SPARK_MASTER=spark://spark:7077
+    depends_on:
+      - spark
+
+  comfyui:
+    build:
+      context: .
+      dockerfile: docker/comfyui/Dockerfile
+    container_name: createveai-comfyui
+    ports:
+      - "8181:8181"  # ComfyUI web interface
+    volumes:
+      - comfyui_data:/comfyui/output
+      - ./:/comfyui/custom_nodes/createveai-apachespark
+      - ./examples/workflows:/comfyui/workflows
+    environment:
+      - SPARK_MASTER=spark://spark:7077
+    depends_on:
+      - spark
+
+volumes:
+  spark_data:
+  comfyui_data:

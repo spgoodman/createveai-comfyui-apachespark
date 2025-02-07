@@ -1,0 +1,162 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.iml
+.project
+.classpath
+.settings/
+.vs/
+
+# Environment
+.env
+.venv/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+.env.*
+
+# Testing
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+htmlcov/
+
+# Documentation
+docs/_build/
+docs/api/_build/
+site/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# ComfyUI
+inputs/
+outputs/
+models/
+custom_nodes/
+*.ckpt
+*.safetensors
+*.pt
+*.pth
+
+# Spark
+spark-warehouse/
+metastore_db/
+derby.log
+*.log
+logs/
+
+# Databricks
+.dbx/
+dbfs/
+*.dbc
+
+# Docker
+.docker/
+*.env.local
+*.env.development
+*.env.production
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Data
+data/
+*.csv
+*.parquet
+*.json
+!/examples/data/**
+!/examples/workflows/**/*.json
+*.db
+*.sqlite
+*.sqlite3
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.joblib
+
+# Credentials
+*.key
+*.pem
+*.crt
+*.cer
+*.p12
+*.pfx
+*.der
+
+# Local configuration
+config.local.yaml
+settings.local.json
+.localconfig
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Node modules (if using any JavaScript tools)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Virtual environment markers
+pyvenv.cfg
+pip-selfcheck.json
+
+# Poetry
+poetry.lock
+
+# Pre-commit
+.pre-commit-config.yaml.cache

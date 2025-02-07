@@ -1,0 +1,59 @@
+# Base requirements
+-r requirements.txt
+
+# Testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
+pytest-mock>=3.10.0
+pytest-asyncio>=0.21.0
+pytest-timeout>=2.1.0
+pytest-xdist>=3.3.0
+
+# Linting and Formatting
+black>=23.0.0
+isort>=5.12.0
+flake8>=6.0.0
+pylint>=2.17.0
+mypy>=1.0.0
+
+# Type checking
+types-requests>=2.31.0
+types-PyYAML>=6.0.0
+pyspark-stubs>=3.2.0
+
+# Documentation
+sphinx>=7.0.0
+sphinx-rtd-theme>=1.2.0
+sphinx-autodoc-typehints>=1.23.0
+sphinx-copybutton>=0.5.0
+myst-parser>=2.0.0
+
+# Development Tools
+ipython>=8.0.0
+jupyter>=1.0.0
+notebook>=7.0.0
+pre-commit>=3.3.0
+bump2version>=1.0.0
+
+# Debugging
+debugpy>=1.6.0
+ipdb>=0.13.0
+
+# Performance Testing
+locust>=2.15.0
+memory-profiler>=0.61.0
+
+# Security
+bandit>=1.7.0
+safety>=2.3.0
+
+# Docker Development
+docker>=6.1.0
+docker-compose>=2.20.0
+
+# Additional Development Dependencies
+rich>=13.0.0  # Better CLI output
+typer>=0.9.0  # CLI tools
+pydantic>=2.0.0  # Data validation
+requests>=2.31.0  # HTTP client
+python-dotenv>=1.0.0  # Environment management

@@ -1,0 +1,146 @@
+{
+  "last_node_id": 8,
+  "last_link_id": 10,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "CreateveAI/Apache Spark/LoadDatasetNode",
+      "pos": [100, 100],
+      "size": {
+        "width": 300,
+        "height": 200
+      },
+      "flags": {},
+      "inputs": {
+        "path": "/data/sample_dataset.parquet",
+        "format": "parquet",
+        "connection_type": "LOCAL",
+        "master": "spark://spark:7077",
+        "app_name": "ComfyUI-Spark-Demo"
+      }
+    },
+    {
+      "id": 2,
+      "type": "CreateveAI/Apache Spark/TextFeatureExtractorNode",
+      "pos": [450, 100],
+      "size": {
+        "width": 300,
+        "height": 200
+      },
+      "flags": {},
+      "inputs": {
+        "dataset": {"node": 1, "output": "dataset"},
+        "text_column": "description",
+        "extraction_type": "SEMANTIC_VECTORS",
+        "model_config": {
+          "model_name": "all-MiniLM-L6-v2",
+          "max_length": 512
+        }
+      }
+    },
+    {
+      "id": 3,
+      "type": "CLIPTextEncode",
+      "pos": [800, 100],
+      "size": {
+        "width": 300,
+        "height": 100
+      },
+      "flags": {},
+      "inputs": {
+        "text": {"node": 1, "output": "description"},
+        "clip": {"node": 4, "output": "clip"}
+      }
+    },
+    {
+      "id": 4,
+      "type": "EmptyLatentImage",
+      "pos": [100, 400],
+      "size": {
+        "width": 300,
+        "height": 100
+      },
+      "flags": {},
+      "inputs": {
+        "width": 512,
+        "height": 512,
+        "batch_size": 1
+      }
+    },
+    {
+      "id": 5,
+      "type": "KSampler",
+      "pos": [800, 400],
+      "size": {
+        "width": 300,
+        "height": 300
+      },
+      "flags": {},
+      "inputs": {
+        "model": {"node": 6, "output": "model"},
+        "positive": {"node": 3, "output": "encoded"},
+        "negative": {"node": 7, "output": "encoded"},
+        "latent_image": {"node": 4, "output": "latent"},
+        "seed": 42,
+        "steps": 20,
+        "cfg": 7,
+        "sampler_name": "euler_ancestral",
+        "scheduler": "normal",
+        "denoise": 1
+      }
+    },
+    {
+      "id": 6,
+      "type": "CheckpointLoaderSimple",
+      "pos": [100, 600],
+      "size": {
+        "width": 300,
+        "height": 100
+      },
+      "flags": {},
+      "inputs": {
+        "ckpt_name": "v1-5-pruned.ckpt"
+      }
+    },
+    {
+      "id": 7,
+      "type": "CLIPTextEncode",
+      "pos": [450, 600],
+      "size": {
+        "width": 300,
+        "height": 100
+      },
+      "flags": {},
+      "inputs": {
+        "text": "ugly, blurry, bad art, poor quality",
+        "clip": {"node": 4, "output": "clip"}
+      }
+    },
+    {
+      "id": 8,
+      "type": "VAEDecode",
+      "pos": [1150, 400],
+      "size": {
+        "width": 300,
+        "height": 100
+      },
+      "flags": {},
+      "inputs": {
+        "samples": {"node": 5, "output": "latent"},
+        "vae": {"node": 6, "output": "vae"}
+      }
+    }
+  ],
+  "links": [
+    {"id": 1, "from_node": 1, "from_output": "dataset", "to_node": 2, "to_input": "dataset"},
+    {"id": 2, "from_node": 1, "from_output": "description", "to_node": 3, "to_input": "text"},
+    {"id": 3, "from_node": 4, "from_output": "clip", "to_node": 3, "to_input": "clip"},
+    {"id": 4, "from_node": 6, "from_output": "model", "to_node": 5, "to_input": "model"},
+    {"id": 5, "from_node": 3, "from_output": "encoded", "to_node": 5, "to_input": "positive"},
+    {"id": 6, "from_node": 7, "from_output": "encoded", "to_node": 5, "to_input": "negative"},
+    {"id": 7, "from_node": 4, "from_output": "latent", "to_node": 5, "to_input": "latent_image"},
+    {"id": 8, "from_node": 5, "from_output": "latent", "to_node": 8, "to_input": "samples"},
+    {"id": 9, "from_node": 6, "from_output": "vae", "to_node": 8, "to_input": "vae"},
+    {"id": 10, "from_node": 4, "from_output": "clip", "to_node": 7, "to_input": "clip"}
+  ]
+}

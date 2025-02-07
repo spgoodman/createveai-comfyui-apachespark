@@ -1,6 +1,8 @@
 # CreateveAI Apache Spark Nodes for ComfyUI
 
-Custom nodes providing Apache Spark and Databricks integration for ComfyUI, enabling advanced data processing, feature extraction, and analysis capabilities for AI workflows.
+Custom nodes providing Apache Spark and Databricks integration for ComfyUI, enabling advanced data processing, feature extraction, and analysis capabilities for AI workflows. 
+
+![Example Workflow](examples/workflows/spark-workflow-example.png)
 
 ## 🌟 Features
 
@@ -10,25 +12,7 @@ Custom nodes providing Apache Spark and Databricks integration for ComfyUI, enab
 - **Spark Integration**: Support for both local Spark and Databricks environments
 - **Smart Analysis**: Extract meaningful patterns and insights from your data
 - **Progress Tracking**: Real-time progress updates for long-running operations
-- **Docker Support**: Ready-to-use containerized environment
-
-## 🚀 Quick Start with Docker
-
-The easiest way to get started is using Docker Compose:
-
-```bash
-# Clone the repository
-git clone https://github.com/spgoodman/createveai-comfyui-apachespark.git
-cd createveai-comfyui-apachespark
-
-# Start the environment
-docker-compose up -d
-
-# Access services:
-# - ComfyUI: http://localhost:8181
-# - Jupyter: http://localhost:8888
-# - Spark UI: http://localhost:8080
-```
+- **Docker Support**: Ready-to-use containerized environment for development
 
 ## 🛠️ Manual Installation
 
@@ -45,6 +29,24 @@ pip install -r requirements.txt
 
 # Install optional model files
 python -m spacy download en_core_web_sm
+```
+
+## 🚀 Quick Start with Docker for Development
+
+The easiest way to get started is using Docker Compose:
+
+```bash
+# Clone the repository
+git clone https://github.com/spgoodman/createveai-comfyui-apachespark.git
+cd createveai-comfyui-apachespark
+
+# Start the environment
+docker-compose up -d
+
+# Access services:
+# - ComfyUI: http://localhost:8181
+# - Jupyter: http://localhost:8888
+# - Spark UI: http://localhost:8080
 ```
 
 ## ⚙️ Configuration
@@ -100,8 +102,6 @@ DATABRICKS_TOKEN=your-access-token
 
 ### 1. ComfyUI Nodes
 
-![Example Workflow](examples/workflows/spark-workflow-example.png)
-
 [Example ComfyUI Workflow](examples/workflows/)
 
 This workflow is an initial example of various node combinations.
@@ -144,26 +144,9 @@ Detailed documentation is available in the `docs` directory:
 - [Example Workflows](docs/examples/)
 - [API Reference](docs/api/)
 
-## 🤝 Contributing
-
-Contributions are welcome! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
-### Development Process
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests
-5. Submit a pull request
-
 ## 📄 License
 
 MIT License. See [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- ComfyUI community
-- Apache Spark community
-- All our contributors
 
 ## 🔗 Links
 

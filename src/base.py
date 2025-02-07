@@ -7,7 +7,7 @@ import numpy as np
 class Node(ABC):
     """Base class for all nodes"""
     
-    CATEGORY = "CreateveAI/Apache Spark"
+    CATEGORY = "Createve.AI/Apache Spark"
     CATEGORY_ICON = "🔥"  # Spark icon
     VERSION = "1.0.0"
     RETURN_TYPES = ()

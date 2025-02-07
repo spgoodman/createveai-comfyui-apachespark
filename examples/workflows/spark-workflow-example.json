@@ -1,0 +1,692 @@
+{
+  "last_node_id": 11,
+  "last_link_id": 7,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "ImageFeatureAnalyzer",
+      "pos": [
+        743.1666870117188,
+        501.4444580078125
+      ],
+      "size": [
+        393,
+        122
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "dataset",
+          "type": "DATASET",
+          "link": 1
+        },
+        {
+          "name": "model_config",
+          "type": "DICT",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "feature_config",
+          "type": "DICT",
+          "link": null,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "visual_features",
+          "type": "TENSOR",
+          "links": [
+            3
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "style_vectors",
+          "type": "TENSOR",
+          "links": null
+        },
+        {
+          "name": "suggested_params",
+          "type": "DICT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageFeatureAnalyzer"
+      },
+      "widgets_values": [
+        "",
+        [
+          "COMPOSITION",
+          "STYLE"
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "type": "FeatureCombiner",
+      "pos": [
+        1263.1666259765625,
+        401.4444580078125
+      ],
+      "size": [
+        405.5999755859375,
+        98
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text_features",
+          "type": "TENSOR",
+          "link": 2
+        },
+        {
+          "name": "image_features",
+          "type": "TENSOR",
+          "link": 3
+        },
+        {
+          "name": "weights",
+          "type": "DICT",
+          "link": null,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "combined_features",
+          "type": "TENSOR",
+          "links": null
+        },
+        {
+          "name": "metadata",
+          "type": "DICT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FeatureCombiner"
+      },
+      "widgets_values": [
+        "CONCAT"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "QueryTemplate",
+      "pos": [
+        413.1666564941406,
+        691.4444580078125
+      ],
+      "size": [
+        418.1999816894531,
+        102
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "template_parameters",
+          "type": "DICT",
+          "link": null
+        },
+        {
+          "name": "table_schema",
+          "type": "DICT",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "query_spec",
+          "type": "DICT",
+          "links": null
+        },
+        {
+          "name": "template_info",
+          "type": "DICT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "QueryTemplate"
+      },
+      "widgets_values": [
+        "",
+        false
+      ]
+    },
+    {
+      "id": 4,
+      "type": "TableInspector",
+      "pos": [
+        13.166666984558105,
+        71.44444274902344
+      ],
+      "size": [
+        330,
+        190
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "config_params",
+          "type": "DICT",
+          "link": null,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "table_schema",
+          "type": "DICT",
+          "links": [
+            4
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "column_types",
+          "type": "DICT",
+          "links": null
+        },
+        {
+          "name": "sample_data",
+          "type": "DICT",
+          "links": null
+        },
+        {
+          "name": "schema_hash",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TableInspector"
+      },
+      "widgets_values": [
+        "LOCAL",
+        "",
+        "",
+        false
+      ]
+    },
+    {
+      "id": 5,
+      "type": "DynamicQueryBuilder",
+      "pos": [
+        413.1666564941406,
+        71.44444274902344
+      ],
+      "size": [
+        355.20001220703125,
+        182
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "table_schema",
+          "type": "DICT",
+          "link": 4
+        },
+        {
+          "name": "selected_columns",
+          "type": "LIST",
+          "link": null
+        },
+        {
+          "name": "conditions",
+          "type": "LIST",
+          "link": null
+        },
+        {
+          "name": "aggregations",
+          "type": "LIST",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "group_by",
+          "type": "LIST",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "order_by",
+          "type": "LIST",
+          "link": null,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "query_spec",
+          "type": "DICT",
+          "links": [
+            5
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "preview_sql",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DynamicQueryBuilder"
+      },
+      "widgets_values": [
+        "",
+        false
+      ]
+    },
+    {
+      "id": 6,
+      "type": "UniversalQueryExecutor",
+      "pos": [
+        873.1666870117188,
+        71.44444274902344
+      ],
+      "size": [
+        367.79998779296875,
+        194
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "query_spec",
+          "type": "DICT",
+          "link": 5
+        },
+        {
+          "name": "config_params",
+          "type": "DICT",
+          "link": null,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result_dataset",
+          "type": "DATASET",
+          "links": null,
+          "slot_index": 0
+        },
+        {
+          "name": "affected_rows",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "execution_stats",
+          "type": "DICT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UniversalQueryExecutor"
+      },
+      "widgets_values": [
+        "LOCAL",
+        "",
+        "",
+        false,
+        "NONE"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "LoadDataset",
+      "pos": [
+        13.166666984558105,
+        331.4444580078125
+      ],
+      "size": [
+        315,
+        174
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "config_params",
+          "type": "DICT",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "options",
+          "type": "DICT",
+          "link": null,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "dataset",
+          "type": "DATASET",
+          "links": [
+            7
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadDataset"
+      },
+      "widgets_values": [
+        "",
+        "parquet",
+        "LOCAL",
+        "local[*]",
+        "CreateveAI"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "TextFeatureExtractor",
+      "pos": [
+        733.1666870117188,
+        331.4444580078125
+      ],
+      "size": [
+        418.1999816894531,
+        122
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "dataset",
+          "type": "DATASET",
+          "link": 6
+        },
+        {
+          "name": "model_config",
+          "type": "DICT",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "feature_config",
+          "type": "DICT",
+          "link": null,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "features",
+          "type": "TENSOR",
+          "links": [
+            2
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "metadata",
+          "type": "DICT",
+          "links": null
+        },
+        {
+          "name": "prompt_suggestions",
+          "type": "LIST",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TextFeatureExtractor"
+      },
+      "widgets_values": [
+        "",
+        "SEMANTIC_VECTORS"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "FilterDataset",
+      "pos": [
+        373.1666564941406,
+        331.4444580078125
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "dataset",
+          "type": "DATASET",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "filtered_dataset",
+          "type": "DATASET",
+          "links": [
+            1,
+            6
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FilterDataset"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 10,
+      "type": "DynamicTableInspector",
+      "pos": [
+        893.1666870117188,
+        741.4444580078125
+      ],
+      "size": [
+        330,
+        170
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "config_params",
+          "type": "DICT",
+          "link": null,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "table_schema",
+          "type": "DICT",
+          "links": null
+        },
+        {
+          "name": "column_info",
+          "type": "DICT",
+          "links": null
+        },
+        {
+          "name": "sample_data",
+          "type": "DICT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DynamicTableInspector"
+      },
+      "widgets_values": [
+        "LOCAL",
+        "",
+        "",
+        false
+      ]
+    },
+    {
+      "id": 11,
+      "type": "DynamicQuery",
+      "pos": [
+        1243.1666259765625,
+        691.4444580078125
+      ],
+      "size": [
+        393,
+        234
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "selected_columns",
+          "type": "LIST",
+          "link": null
+        },
+        {
+          "name": "conditions",
+          "type": "LIST",
+          "link": null
+        },
+        {
+          "name": "group_by",
+          "type": "LIST",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "order_by",
+          "type": "LIST",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "config_params",
+          "type": "DICT",
+          "link": null,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result_dataset",
+          "type": "DATASET",
+          "links": null
+        },
+        {
+          "name": "query_info",
+          "type": "DICT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DynamicQuery"
+      },
+      "widgets_values": [
+        "LOCAL",
+        "",
+        "",
+        false,
+        1000
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      9,
+      0,
+      1,
+      0,
+      "DATASET"
+    ],
+    [
+      2,
+      8,
+      0,
+      2,
+      0,
+      "TENSOR"
+    ],
+    [
+      3,
+      1,
+      0,
+      2,
+      1,
+      "TENSOR"
+    ],
+    [
+      4,
+      4,
+      0,
+      5,
+      0,
+      "DICT"
+    ],
+    [
+      5,
+      5,
+      0,
+      6,
+      0,
+      "DICT"
+    ],
+    [
+      6,
+      9,
+      0,
+      8,
+      0,
+      "DATASET"
+    ],
+    [
+      7,
+      7,
+      0,
+      9,
+      0,
+      "DATASET"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.7972024500000005,
+      "offset": [
+        116.7432150703992,
+        109.00884568279949
+      ]
+    },
+    "node_versions": {
+      "createveai-comfyui-apachespark": "08e69fdb0ebf4307216a94b879fa918ec4763388"
+    },
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0
+  },
+  "version": 0.4
+}

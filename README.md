@@ -98,16 +98,13 @@ DATABRICKS_TOKEN=your-access-token
 
 ## 🎯 Example Workflows
 
-### 1. Text-to-Image Generation from Dataset
-```json
-# Load the example workflow:
-examples/workflows/text_to_image_workflow.json
-```
-This workflow:
-1. Loads descriptions from a Spark dataset
-2. Extracts semantic features
-3. Generates images using the descriptions
-4. Saves the results
+### 1. ComfyUI Nodes
+
+![Example Workflow](examples/workflows/spark-workflow-example.png)
+
+[Example ComfyUI Workflow](examples/workflows/)
+
+This workflow is an initial example of various node combinations.
 
 ### 2. Dataset Creation and Analysis
 ```python
